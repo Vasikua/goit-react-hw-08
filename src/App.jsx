@@ -1,36 +1,23 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchContacts } from './redux/contactsOps'
-import { selectContacts, selectError, selectIsLoading } from './redux/selectors';
-import ContactForm from './components/contactForm/ContactForm';
-import ContactList from './components/contactList/ContactList';
-import SearchBox from './components/searchBox/SearchBox';
-import { Layout } from './components/layout/Layout';
+import { Routes, Route } from 'react-router-dom';
+import  Layout  from './components/layout/Layout';
+import { lazy } from "react";
+const NotFoundPage =     lazy(() => import('./pages/notFoundPage/NotFoundPage'));
+const RegistrationPage = lazy(() => import('./pages/registrationPage/RegistrationPage'));
+const LogInPage =        lazy(() => import('./pages/logInPage/LogInPage'));
+const HomePage =         lazy(() => import('./pages/homePage/HomePage'));
+const ContactsPage =     lazy(() => import('./pages/contactsPage/ContactsPage'))
 
 export default function App() {
 
-  const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
-  const items = useSelector(selectContacts)  
- 
-  useEffect(() => {
-    dispatch(fetchContacts());
-    
-  },[dispatch])
-  
   return (
     <Layout>
-      <h1 className='title'>Phonebook</h1>
-      <ContactForm/>
-      <SearchBox />
-      {error && <p>Error: {error}</p>}
-      {isLoading && <p>Contacts is loading...</p>}
-      {items.length > 0 && ( <ContactList />)}
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/contacts' element={<ContactsPage />} />
+        <Route path='/logIn' element={<LogInPage />} />
+        <Route path='/registration' element={<RegistrationPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </Layout>
-  )                                   
-
-
+  )
 }
-
-
