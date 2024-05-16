@@ -26,7 +26,10 @@ extraReducers: builder =>
         state.isLoggedIn = true;
         })
         .addCase((logOut.fulfilled), (state) => {
-            state.user = null;
+            state.user = {
+                            name: null,
+                            email: null,
+            };
             state.token = null;
             state.isLoggedIn = false;
 

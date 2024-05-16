@@ -1,9 +1,8 @@
+import css from './NotFoundPage.module.css';
 export default function NotFoundPage() {
     return (
-        <div>
-            <p>
-        NotFoundPage
-            </p>
+        <div className={css.wrapper}>
+            <p className={css.text}> NotFoundPage </p>
         </div>
     )
 }
