@@ -1,6 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from "yup";
 import css from './LoginForm.module.css';
+import { toast } from 'react-hot-toast'
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/auth/operations';
 const UserSchema =Yup.object().shape({
@@ -11,7 +12,15 @@ export default function LogInForm() {
      
     const dispatch = useDispatch();
     const handleSubmit = (values, actions) => {
-    dispatch(logIn(values)); 
+        dispatch(logIn(values))
+            .unwrap()
+            .then(response => {
+                console.log(response);
+                toast.success("Success!!");
+            }).catch(error => {
+                console.log(error);
+                toast.error("Somthing went wrong ")
+            }); 
      actions.resetForm();
 
     }
@@ -24,17 +33,15 @@ export default function LogInForm() {
             onSubmit={handleSubmit}>
             <Form className={css.form} autoComplete='false'>
                 <div className={css.group}>
-                    <label >
+                    <label className={css.label} >
                         Email
                         <Field type="email" name="email" />
-                        <ErrorMessage name="email" component={"span"}/>
                     </label>
                 </div>
                 <div className={css.group}>
-                    <label>
+                    <label className={css.label}>
                         Password
                         <Field type="password" name="password"/>
-                        <ErrorMessage name="password" component={"span"}/>
                     </label>
                 </div>
                 <button className={css.submit} type='submit'>Log In</button>
