@@ -7,22 +7,25 @@ import Loader from "./components/loader/Loader";
 import { selectIsRefreshing } from './redux/auth/selectors';
 import  RestrictedRoute  from './components/RestrictedRoute';
 import PrivateRoute from './components/PrivateRoute';
+
+
 const NotFoundPage = lazy(() => import('./pages/notFoundPage/NotFoundPage'));
-const RegistrationForm = lazy(() => import('./pages/registrationForm/RegistrationForm'));
-const LogInForm = lazy(() => import('./pages/loginForm/LoginForm'));
+const RegistrationPage = lazy(() => import('./pages/registrationPage/RegistrationPage'));
+const LogInPage = lazy(() => import('./pages/loginPage/LoginPage'));
 const HomePage = lazy(() => import('./pages/homePage/HomePage'));
 const ContactsPage = lazy(() => import('./pages/contactsPage/ContactsPage'));
 
 export default function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  
   useEffect(() => {
     dispatch(refreshUser());
   },[dispatch])
   return (
     <Layout>
       {isRefreshing ? (<p>Wait your data is refreshing...</p>) :
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={<Loader/>}>
         <Routes>
         <Route path='/' element={<HomePage />} />
             <Route
@@ -32,11 +35,11 @@ export default function App() {
             <Route
               path='/logIn'
               element={
-                <RestrictedRoute component={< LogInForm />} redirectTo="/contacts" />} 
+                <RestrictedRoute component={< LogInPage />} redirectTo="/contacts" />} 
             />
             <Route
               path='/registration'
-              element={<RestrictedRoute component={<RegistrationForm />} redirectTo="/" />} 
+              element={<RestrictedRoute component={<RegistrationPage />} redirectTo="/" />} 
             />
         <Route path="*" element={<NotFoundPage />} />
         </Routes>
