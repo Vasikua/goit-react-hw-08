@@ -1,6 +1,6 @@
 import { Field, Form, Formik } from 'formik';
 import * as Yup from "yup";
-import css from './RegistrationPage.module.css';
+import css from './RegistrationForm.module.css';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operations';
 const UserSchema =Yup.object().shape({

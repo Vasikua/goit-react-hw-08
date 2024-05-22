@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
-import  Layout  from './components/layout/Layout';
 import { lazy, Suspense, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { refreshUser } from './redux/auth/operations';
+import  Layout  from './components/layout/Layout';
 import Loader from "./components/loader/Loader";
 import { selectIsRefreshing } from './redux/auth/selectors';
 import  RestrictedRoute  from './components/RestrictedRoute';
@@ -11,7 +11,7 @@ const NotFoundPage = lazy(() => import('./pages/notFoundPage/NotFoundPage'));
 const RegistrationForm = lazy(() => import('./pages/registrationForm/RegistrationForm'));
 const LogInForm = lazy(() => import('./pages/loginForm/LoginForm'));
 const HomePage = lazy(() => import('./pages/homePage/HomePage'));
-const ContactsPage = lazy(() => import('./pages/contactsPage/ContactsPage'))
+const ContactsPage = lazy(() => import('./pages/contactsPage/ContactsPage'));
 
 export default function App() {
   const dispatch = useDispatch();
