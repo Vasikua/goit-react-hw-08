@@ -1,14 +1,14 @@
 import { Field, Form, Formik } from 'formik';
-import * as Yup from "yup";
+// import * as Yup from "yup";
 import css from './LoginForm.module.css';
 import { toast } from 'react-hot-toast'
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/auth/operations';
 
-const UserSchema = Yup.object().shape({
-  username: Yup.string().min(3, "must be at least 3 chars").required("Is required"),
-  number: Yup.number().positive().required("Is required"),
-  });
+// const UserSchema = Yup.object().shape({
+//   username: Yup.string().min(3, "must be at least 3 chars").required("Is required"),
+//   number: Yup.number().positive().required("Is required"),
+//   });
 
 export default function LogInForm() {
      
@@ -31,7 +31,7 @@ export default function LogInForm() {
             email:"", 
             password:"",
         }}
-            validationSchema={UserSchema}
+            // validationSchema={UserSchema}
             onSubmit={handleSubmit}>
             <Form className={css.form} autoComplete='false'>
                 <div className={css.group}>
