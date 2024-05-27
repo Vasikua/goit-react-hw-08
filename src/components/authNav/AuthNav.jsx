@@ -6,11 +6,11 @@ import { NavLink } from "react-router-dom"
 export default function AuthNav() {
     
     return ( <div className={css.wrapper}>
-        <NavLink className={css.link} to='registration'>
-            Registration
+        <NavLink className={css.link} to='register'>
+            Register
         </NavLink>
-        <NavLink className={css.link} to='logIn'>
-                Log In
+        <NavLink className={css.link} to='login'>
+            Log In
         </NavLink>
     </div>
     )

@@ -53,9 +53,6 @@ const contactsSlice = createSlice({
   }
 });
 
-export const selectContacts = (state) => {
-    return state.contacts.items;
-   
-};
+
 export const {fetchingInProgres, fetchingSuccess, fetchingError } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;

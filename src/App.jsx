@@ -27,18 +27,21 @@ export default function App() {
       {isRefreshing ? (<p>Wait your data is refreshing...</p>) :
         <Suspense fallback={<Loader/>}>
         <Routes>
-        <Route path='/' element={<HomePage />} />
+            <Route
+              path='/'
+              element={
+                <HomePage />} />
             <Route
               path='/contacts'
               element={
-                <PrivateRoute component={<ContactsPage />} redirectTo="/logIn" />} />
+                <PrivateRoute component={<ContactsPage />} redirectTo="/login" />} />
             <Route
-              path='/logIn'
+              path='/login'
               element={
                 <RestrictedRoute component={< LogInPage />} redirectTo="/contacts" />} 
             />
             <Route
-              path='/registration'
+              path='/register'
               element={<RestrictedRoute component={<RegistrationPage />} redirectTo="/" />} 
             />
         <Route path="*" element={<NotFoundPage />} />
