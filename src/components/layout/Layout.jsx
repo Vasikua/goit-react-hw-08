@@ -5,8 +5,9 @@ import { Toaster } from "react-hot-toast";
 export default function Layout ({ children }) {
     return (
         <div className={css.container}>
-                <AppBar />
-                {children}
-                <Toaster position='Top-center' reverseOrder={ false} />
+            <AppBar />
+            {children}
+            <Toaster position='Top-center' reverseOrder={false} />
         </div>
- )}
+    );
+}

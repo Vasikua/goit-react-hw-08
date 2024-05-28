@@ -11,11 +11,11 @@ const cleareAuthHeader = () => {
     axios.defaults.headers.common["Autorization"] = "";
     
 };
-
+//  mandiakinc112233@gmail.com пароль такий самий
 export const register = createAsyncThunk("auth/register",
     async (newUser, thunkAPI) => {
     try {
-        const response = await axios.post("/users/signup", newUser)
+        const response = await axios.post("/users/signup", newUser);
         setAuthHeader(response.data.token);
         return response.data;
     } catch (error) {
@@ -23,7 +23,7 @@ export const register = createAsyncThunk("auth/register",
     }
 });
  
-export const logIn = createAsyncThunk("auth/login",
+export const login = createAsyncThunk("auth/login",
     async (userInfo, thunkAPI) => {
         try {
             const response = await axios.post("/users/login", userInfo)
@@ -34,7 +34,7 @@ export const logIn = createAsyncThunk("auth/login",
     }
     })
 
-    export const logOut = createAsyncThunk("auth/logout", 
+    export const logout = createAsyncThunk("auth/logout", 
         async (_, thunkAPI) => {
             
             try { 

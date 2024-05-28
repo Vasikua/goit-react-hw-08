@@ -1,24 +1,24 @@
 import { Field, Form, Formik } from 'formik';
-// import * as Yup from "yup";
+import * as Yup from "yup";
 import css from './LoginForm.module.css';
 import { toast } from 'react-hot-toast'
 import { useDispatch } from 'react-redux';
-import { logIn } from '../../redux/auth/operations';
+import { login } from '../../redux/auth/operations';
 
-// const UserSchema = Yup.object().shape({
-//   username: Yup.string().min(3, "must be at least 3 chars").required("Is required"),
-//   number: Yup.number().positive().required("Is required"),
-//   });
+const UserSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email format").required("Email is required"),
+    password: Yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
+  });
 
 export default function LogInForm() {
      
     const dispatch = useDispatch();
     const handleSubmit = (values, actions) => {
-        dispatch(logIn(values))
+        dispatch(login(values))
             .unwrap()
             .then(response => {
-                console.log(response);
-                toast.success("Success!!");
+                 console.log(response);
+               toast.success("Success!!");
             }).catch(error => {
                 console.log(error);
                 toast.error("Somthing went wrong ")
@@ -31,7 +31,7 @@ export default function LogInForm() {
             email:"", 
             password:"",
         }}
-            // validationSchema={UserSchema}
+            validationSchema={UserSchema}
             onSubmit={handleSubmit}>
             <Form className={css.form} autoComplete='false'>
                 <div className={css.group}>
