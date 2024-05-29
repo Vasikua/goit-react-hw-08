@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/auth/selectors";
+import { toast } from 'react-hot-toast';
 import { logout } from "../../redux/auth/operations";
 import css from "./UserMenu.module.css"
 export default function UserMenu() {
     const dispatch = useDispatch();
     const handleLogout = () => {
-        console.log("button work");
+       
+toast.success("By-by");
            dispatch(logout());
     }
     

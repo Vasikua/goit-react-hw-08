@@ -5,13 +5,12 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 axios.defaults.baseURL = "https://connections-api.herokuapp.com";
 
 const setAuthHeader = token => {
-    axios.defaults.headers.common["Autorization"] = `Bearer ${token}`;
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
-const cleareAuthHeader = () => {
-    axios.defaults.headers.common["Autorization"] = "";
-    
+const clearAuthHeader = () => {
+    axios.defaults.headers.common["Authorization"] = "";
 };
-//  mandiakinc112233@gmail.com пароль такий самий
+
 export const register = createAsyncThunk("auth/register",
     async (newUser, thunkAPI) => {
     try {
@@ -38,7 +37,7 @@ export const login = createAsyncThunk("auth/login",
         async (_, thunkAPI) => {
             try { 
                 await axios.post("/users/logout")
-                cleareAuthHeader();
+                clearAuthHeader();
             } catch (error) {
                 return thunkAPI.rejectWithValue(error.message);
             }
