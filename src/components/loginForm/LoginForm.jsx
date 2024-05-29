@@ -14,6 +14,7 @@ export default function LogInForm() {
      
     const dispatch = useDispatch();
     const handleSubmit = (values, actions) => {
+        console.log('values',values);
         dispatch(login(values))
             .unwrap()
             .then(response => {

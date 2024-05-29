@@ -1,4 +1,4 @@
 .title {
-  padding-left: auto;
-  padding-right: auto;
+  position: absolute;
+  top: 10px;
 }
