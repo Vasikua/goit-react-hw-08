@@ -8,6 +8,7 @@ export default function UserMenu() {
         console.log("button work");
            dispatch(logout());
     }
+    
     const user = useSelector(selectUser);
     return (
         <div className={css.wrapper}>

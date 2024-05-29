@@ -8,7 +8,6 @@ import { selectIsRefreshing } from './redux/auth/selectors';
 import  RestrictedRoute  from './components/RestrictedRoute';
 import PrivateRoute from './components/PrivateRoute';
 
-
 const NotFoundPage = lazy(() => import('./pages/notFoundPage/NotFoundPage'));
 const RegistrationPage = lazy(() => import('./pages/registrationPage/RegistrationPage'));
 const LogInPage = lazy(() => import('./pages/loginPage/LoginPage'));
@@ -22,10 +21,9 @@ export default function App() {
   useEffect(() => {
     dispatch(refreshUser());
   },[dispatch])
-  return (
-    <Layout>
-      {isRefreshing ? (<p>Wait your data is refreshing...</p>) :
-        <Suspense fallback={<Loader/>}>
+  return (<> {  isRefreshing ? (<p> Wait your data is refreshing...</p >) : 
+    (<Layout>
+      <Suspense fallback={<Loader />}>
         <Routes>
             <Route
               path='/'
@@ -46,9 +44,9 @@ export default function App() {
             />
         <Route path="*" element={<NotFoundPage />} />
         </Routes>
-        </Suspense>}
-    </Layout>
-  )
+        </Suspense>
+    </Layout>)}
+  </>)
 }
 
 
