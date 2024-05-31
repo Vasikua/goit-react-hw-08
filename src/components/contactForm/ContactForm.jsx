@@ -4,42 +4,33 @@ import * as Yup from "yup";
 import { ErrorMessage,Field,Form, Formik } from "formik";
 import { useDispatch } from 'react-redux';
 import { useId } from 'react';
-import{addContact} from '../../redux/contactsOps'
+import { addContact } from '../../redux/contacts/operations';
 
  
 const UserSchema =Yup.object().shape({
-  username: Yup.string().min(3, "must be at least 3 chars").required("Is required"),
-  number: Yup.number().positive().required("Is required"),
+  name: Yup.string().min(3, "must be at least 3 chars").required("Is required"),
+  number: Yup.number().positive().min(9, "must be at least 9").required("Is required"),
   });
 
 export default function ContactForm() {
     const dispatch = useDispatch();
-       
-    const addCont = (values, actions) => {
-        const newContact = {
-        name: values.username.trim(),
-        number: values.number,
-        
+     const nameId = useId();
+     const numberId = useId();  
+     const addCont = (values, actions) => {
+          dispatch(addContact(values))
+          actions.resetForm();
         }
-        dispatch(addContact(newContact))
-        actions.resetForm();
-
-    }
-    const usernameId = useId();
-    const numberId = useId();
-
-
     return (
         <Formik initialValues={{
-            username: "",
+            name: "",
             number: "",
         }}
             validationSchema={UserSchema}
             onSubmit={addCont}>
             <Form className={css.form}>
                 <div className={css.group}>
-                    <label htmlFor={usernameId}>Name</label>
-                    <Field type="text" name="username" id={usernameId} />
+                    <label htmlFor={nameId}>Name</label>
+                    <Field type="text" name="name" id={nameId} />
                     <ErrorMessage name="username" component={"span"}/>
                 </div>
                 <div className={css.group}>

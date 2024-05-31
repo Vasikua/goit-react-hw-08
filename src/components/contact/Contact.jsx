@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import {deleteContact} from "../../redux/contacts/operations";
 import css from './Contact.module.css';
 
-export default function Contact({data: {contactId, name, number }}) {
+export default function Contact({data: {id, name, number }}) {
      const dispatch = useDispatch();
     const handleDelete = () => {
-          dispatch(deleteContact(contactId));
+          dispatch(deleteContact(id));
     }
     return (
         <>
