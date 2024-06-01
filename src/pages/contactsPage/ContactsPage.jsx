@@ -13,10 +13,11 @@ export default function ContactsPage() {
     return (<div className={css.wrapper}>
          
         <h2 className={css.title}>Your contact list </h2>
-       <div className={css.wrapperForm}> <ContactForm />
+        <div className={css.wrapperForm}>
+            <ContactForm />
             <SearchBox />
             </div>
-        <ContactList />
+            <ContactList />
         </div>
     )
 

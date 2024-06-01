@@ -44,15 +44,19 @@ export const login = createAsyncThunk("auth/login",
         })
 export const refreshUser = createAsyncThunk( "auth/refresh",
     async (_, thunkAPI) => {
-        const reduxState = thunkAPI.getState();
-        const saveToken = reduxState.auth.token;
-        setAuthHeader(saveToken);
-        const response = await axios.get("/users/current");
-        return response.data;
+        try {
+            const reduxState = thunkAPI.getState();
+            const saveToken = reduxState.auth.token;
+            setAuthHeader(saveToken);
+            const response = await axios.get("/users/current");
+            return response.data;
+        }  catch (error) {
+                return thunkAPI.rejectWithValue(error.message);
+            }
     }, {
     condition(_, thunkAPI) {
     const reduxState = thunkAPI.getState();
     const saveToken = reduxState.auth.token;
     return saveToken !== null;
-          },
-      })
+    },
+})
